@@ -9,7 +9,7 @@ class LogStash::Filters::Environment < LogStash::Filters::Base
   milestone 1
 
   # Specify a hash of fields to the environment variable
-  # A hash of matches of field => environment variable
+  # A hash of matches of `field => environment` variable
   config :add_field_from_env, :validate => :hash, :default => {}
 
   public
