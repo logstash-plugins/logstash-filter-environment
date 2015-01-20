@@ -6,7 +6,6 @@ require "logstash/namespace"
 # Set fields from environment variables
 class LogStash::Filters::Environment < LogStash::Filters::Base
   config_name "environment"
-  milestone 1
 
   # Specify a hash of fields to the environment variable
   # A hash of matches of `field => environment` variable
