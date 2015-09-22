@@ -2,7 +2,7 @@ require "logstash/devutils/rspec/spec_helper"
 require "logstash/filters/environment"
 
 describe LogStash::Filters::Environment do
-  
+
 
   describe "add a field from the environment" do
     # The logstash config goes here.
@@ -10,7 +10,7 @@ describe LogStash::Filters::Environment do
     config <<-CONFIG
       filter {
         environment {
-          add_field_from_env => [ "newfield", "MY_ENV_VAR" ]
+          add_metadata_from_env => [ "newfield", "MY_ENV_VAR" ]
         }
       }
     CONFIG
@@ -18,7 +18,7 @@ describe LogStash::Filters::Environment do
     ENV["MY_ENV_VAR"] = "hello world"
 
     sample "example" do
-      insist { subject["newfield"] } == "hello world"
+      insist { subject["@metadata"]["newfield"] } == "hello world"
     end
   end
 
@@ -29,7 +29,7 @@ describe LogStash::Filters::Environment do
       filter {
         environment {
           type => "foo"
-          add_field_from_env => [ "newfield", "MY_ENV_VAR" ]
+          add_metadata_from_env => [ "newfield", "MY_ENV_VAR" ]
         }
       }
     CONFIG
@@ -37,7 +37,7 @@ describe LogStash::Filters::Environment do
     ENV["MY_ENV_VAR"] = "hello world"
 
     sample("type" => "bar", "message" => "fizz") do
-      insist { subject["newfield"] }.nil?
+      insist { subject["@metadata"]["newfield"] }.nil?
     end
   end
 end
