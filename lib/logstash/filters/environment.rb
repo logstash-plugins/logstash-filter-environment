@@ -9,7 +9,7 @@ require "logstash/namespace"
 # Adding environment variables is as easy as:
 #    filter {
 #      environment {
-#        add_field_from_env { "field_name" => "ENV_VAR_NAME" }
+#        add_metadata_from_env { "field_name" => "ENV_VAR_NAME" }
 #      }
 #    }
 #
