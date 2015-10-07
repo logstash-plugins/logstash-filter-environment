@@ -48,7 +48,7 @@ class LogStash::Filters::Environment < LogStash::Filters::Base
 
   public
   def filter(event)
-    return unless filter?(event)
+    
     @add_metadata_from_env.each do |field, env|
       event["@metadata"][field] = ENV[env]
     end
