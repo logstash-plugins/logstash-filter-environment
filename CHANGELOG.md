@@ -1,3 +1,5 @@
+# 2.0.4
+  - New dependency requirements for logstash-core for the 5.0 release
 ## 2.0.2
  - Filtering using `tags` or `type` option is now deprecated, please use conditionals Ref: https://github.com/elastic/logstash/pull/4011
 ## 2.0.0
