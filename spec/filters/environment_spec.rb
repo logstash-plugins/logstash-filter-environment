@@ -18,7 +18,7 @@ describe LogStash::Filters::Environment do
     CONFIG
 
     sample "example" do
-      insist { subject["@metadata"]["newfield"] } == "hello world"
+      insist { subject.get("[@metadata][newfield]") } == "hello world"
     end
   end
 end

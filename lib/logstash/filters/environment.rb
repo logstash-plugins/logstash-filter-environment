@@ -9,7 +9,7 @@ require "logstash/namespace"
 # Adding environment variables is as easy as:
 #    filter {
 #      environment {
-#        add_metadata_from_env { "field_name" => "ENV_VAR_NAME" }
+#        add_metadata_from_env => { "field_name" => "ENV_VAR_NAME" }
 #      }
 #    }
 #
@@ -30,11 +30,11 @@ class LogStash::Filters::Environment < LogStash::Filters::Base
   # Specify a hash of field names and the environment variable name with the
   # value you want imported into Logstash. For example:
   #
-  #    add_metadata_from_env { "field_name" => "ENV_VAR_NAME" }
+  #    add_metadata_from_env => { "field_name" => "ENV_VAR_NAME" }
   #
   # or
   #
-  #    add_metadata_from_env {
+  #    add_metadata_from_env => {
   #      "field1" => "ENV1"
   #      "field2" => "ENV2"
   #      # "field_n" => "ENV_n"
@@ -50,7 +50,7 @@ class LogStash::Filters::Environment < LogStash::Filters::Base
   def filter(event)
     
     @add_metadata_from_env.each do |field, env|
-      event["[@metadata][#{field}]"] = ENV[env]
+      event.set("[@metadata][#{field}]", ENV[env])
     end
     filter_matched(event)
   end # def filter
